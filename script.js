@@ -1,4 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // ===========================
+  // Fungsi dan Variabel Utama
+  // ===========================
+
   const burgerMenuBtn = document.getElementById('burger-menu');
   const navLinks = document.getElementById('nav-links');
   const cartCount = document.getElementById('cart-count');
@@ -9,6 +13,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let cart = [];
 
+  // ===========================
+  // Fungsi Cek Status Login
+  // ===========================
+  function checkLogin() {
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+    if (!isLoggedIn) {
+      // Jika belum login, redirect ke halaman login
+      window.location.href = 'login.html';
+    }
+  }
+
+  // ===========================
+  // Fungsi Keranjang Belanja
+  // ===========================
+
+  // Load data keranjang dari localStorage
   function loadCart() {
     const stored = localStorage.getItem('cart');
     if (stored) {
@@ -18,10 +38,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // Simpan data keranjang ke localStorage
   function saveCart() {
     localStorage.setItem('cart', JSON.stringify(cart));
   }
 
+  // Update badge jumlah item di ikon keranjang
   function updateCartBadge() {
     const totalQuantity = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
     if (cartCount) {
@@ -34,15 +56,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // Render daftar item keranjang di UI
   function renderCartItems() {
     if (!cartItemsList) return;
     cartItemsList.innerHTML = '';
+
     if (cart.length === 0) {
       cartItemsList.innerHTML = '<p>Keranjang kosong.</p>';
       updateCartBadge();
       updateCartTotal();
       return;
     }
+
     cart.forEach((item, idx) => {
       const div = document.createElement('div');
       div.className = 'cart-item';
@@ -54,6 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
       cartItemsList.appendChild(div);
     });
 
+    // Event hapus item keranjang
     cartItemsList.querySelectorAll('.remove-item-btn').forEach(btn => {
       btn.addEventListener('click', e => {
         const idx = parseInt(e.target.dataset.index, 10);
@@ -65,18 +91,21 @@ document.addEventListener('DOMContentLoaded', () => {
           updateCartTotal();
         }
       });
+    
     });
 
     updateCartBadge();
     updateCartTotal();
   }
 
+  // Update total harga keranjang
   function updateCartTotal() {
     if (!totalPriceElem) return;
     const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
     totalPriceElem.textContent = `Rp${total.toLocaleString('id-ID')}`;
   }
 
+  // Tambah produk ke keranjang
   function addToCart(product) {
     const existingIndex = cart.findIndex(item =>
       item.name === product.name &&
@@ -92,6 +121,10 @@ document.addEventListener('DOMContentLoaded', () => {
     updateCartBadge();
   }
 
+  // ===========================
+  // Event Listener
+  // ===========================
+
   // Event tombol tambah ke keranjang
   document.querySelectorAll('.add-to-cart').forEach(button => {
     button.addEventListener('click', () => {
@@ -105,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Menu burger toggle
+  // Toggle menu burger
   if (burgerMenuBtn && navLinks) {
     burgerMenuBtn.addEventListener('click', () => {
       const expanded = burgerMenuBtn.getAttribute('aria-expanded') === 'true';
@@ -113,6 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
       navLinks.classList.toggle('show');
     });
 
+    // Tutup menu saat klik link navigasi
     navLinks.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         navLinks.classList.remove('show');
@@ -138,9 +172,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Inisialisasi data keranjang dan UI
-  loadCart();
-  renderCartItems();
-  updateCartBadge();
-  updateCartTotal();
+  // ===========================
+  // Inisialisasi
+  // ===========================
+
+  checkLogin();       // Cek login dulu, jika belum redirect login.html
+  loadCart();         // Load data keranjang dari localStorage
+  renderCartItems();  // Render isi keranjang di UI
+  updateCartBadge();  // Update badge keranjang
+  updateCartTotal();  // Update total harga keranjang
 });
