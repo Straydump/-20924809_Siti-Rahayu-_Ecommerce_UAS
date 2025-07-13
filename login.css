@@ -1,0 +1,220 @@
+/* RESET & BASE */
+* {
+    box-sizing: border-box;
+  }
+  
+  html {
+    font-size: 16px; /* 1rem = 16px */
+  }
+  
+  body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    background: #f39c12;
+    color: #333;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* NAVBAR */
+  .navbar {
+    display: flex;
+    align-items: center;
+    background-color: #2c3e50;
+    padding: 1rem 4vw; /* 4vw = 4% viewport width */
+    color: white;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+  }
+  
+  .logo-img {
+    height: 3.125rem; /* 50px */
+    margin-right: 0.9375rem; /* 15px */
+    object-fit: contain;
+  }
+  
+  .logo-text {
+    font-weight: 700;
+    font-size: 1.125rem; /* 18px */
+    margin: 0;
+    color: white;
+  }
+  
+  /* MAIN FORM AREA */
+  main {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem 2vw;
+  }
+  
+  .form-wrapper {
+    background: white;
+    padding: 2.5rem 1.875rem; /* 40px 30px */
+    border-radius: 1rem; /* 16px */
+    box-shadow: 0 0.5rem 1.25rem rgba(0,0,0,0.08); /* 8px 20px */
+    max-width: 26.25rem; /* 420px */
+    width: 100%;
+  }
+  
+  /* FORM HEADER */
+  .form-header {
+    text-align: center;
+    margin-bottom: 1.875rem; /* 30px */
+  }
+  
+  .form-logo {
+    width: 6.25rem; /* 100px */
+    height: 6.25rem; /* 100px */
+    object-fit: contain;
+    margin-bottom: 0.9375rem; /* 15px */
+    border-radius: 50%;
+    border: 0.1875rem solid #e67e22; /* 3px */
+    box-shadow: 0 0 0.625rem rgba(230,126,34,0.5); /* 10px */
+  }
+  
+  .form-header h2 {
+    color: #2c3e50;
+    font-weight: 700;
+    font-size: 1.125rem; /* 18px */
+    margin: 0;
+  }
+  
+  /* INPUT GROUP */
+  .input-group {
+    margin-bottom: 1.25rem; /* 20px */
+  }
+  
+  .input-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.375rem; /* 6px */
+    color: #34495e;
+  }
+  
+  .input-group input {
+    width: 100%;
+    padding: 0.75rem 0.9375rem; /* 12px 15px */
+    border: 0.125rem solid #ccc; /* 2px */
+    border-radius: 0.5rem; /* 8px */
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+  }
+  
+  .input-group input:focus {
+    border-color: #e67e22;
+    outline: none;
+  }
+  
+  /* BUTTON */
+  .btn-primary {
+    width: 100%;
+    padding: 0.875rem 0; /* 14px vertical */
+    background-color: #27ae60;
+    border: none;
+    border-radius: 0.5rem;
+    color: white;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-primary:hover {
+    background-color: #1e8449;
+  }
+  
+  /* SWITCH FORM TEXT */
+  .switch-text {
+    text-align: center;
+    margin-top: 1.5625rem; /* 25px */
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  .switch-text a {
+    color: #e67e22;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .switch-text a:hover {
+    text-decoration: underline;
+  }
+  
+  /* RESPONSIVE MEDIA QUERIES */
+  
+  /* PONSEL (max-width: 480px) */
+  @media (max-width: 480px) {
+    html {
+      font-size: 14px; /* sedikit lebih kecil */
+    }
+  
+    .navbar {
+      padding: 0.5rem 4vw;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .logo-img {
+      height: 2.5rem; /* 40px */
+      margin-bottom: 0.5rem;
+    }
+  
+    .logo-text {
+      font-size: 1rem;
+    }
+  
+    main {
+      padding: 2rem 4vw;
+    }
+  
+    .form-wrapper {
+      padding: 2rem 1.25rem;
+      max-width: 100%;
+      border-radius: 0;
+      box-shadow: none;
+    }
+  }
+  
+  /* TABLET (max-width: 768px) */
+  @media (max-width: 768px) {
+    html {
+      font-size: 15px;
+    }
+  
+    .navbar {
+      padding: 1rem 6vw;
+    }
+  
+    main {
+      padding: 2.5rem 6vw;
+    }
+  
+    .form-wrapper {
+      max-width: 360px;
+    }
+  }
+  
+  /* DESKTOP (min-width: 1200px) */
+  @media (min-width: 1200px) {
+    html {
+      font-size: 17px;
+    }
+  
+    .navbar {
+      padding: 1rem 8vw;
+    }
+  
+    main {
+      padding: 3rem 8vw;
+    }
+  
+    .form-wrapper {
+      max-width: 480px;
+    }
+  }
+  

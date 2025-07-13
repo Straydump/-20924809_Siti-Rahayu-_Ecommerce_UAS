@@ -1,0 +1,196 @@
+/* Base styles (desktop first) */
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 20px;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+header {
+  margin-bottom: 20px;
+}
+
+header h1 {
+  margin: 0 0 10px 0;
+}
+
+a {
+  color: #ff6600;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+main {
+  background: white;
+  padding: 1.25rem; /* 20px */
+  border-radius: 0.5rem; /* 8px */
+  max-width: 600px;
+  margin: auto;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+#cart-items {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 2rem; /* Tambah jarak bawah agar tidak rapat dengan bagian berikutnya */
+}
+
+#cart-items li {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.625rem 0; /* 10px */
+  border-bottom: 1px solid #ddd;
+}
+
+#cart-items button {
+  background-color: #ff3300;
+  color: white;
+  border: none;
+  padding: 0.3125rem 0.625rem; /* 5px 10px */
+  border-radius: 0.3125rem; /* 5px */
+  cursor: pointer;
+  font-size: 0.875rem; /* 14px */
+}
+
+#cart-total {
+  font-size: 1.125rem; /* 18px */
+  font-weight: 600;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.payment-options label {
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Tombol checkout */
+#checkout-button {
+  margin-top: 2rem; /* Tambah jarak atas agar tidak terlalu dekat */
+  background-color: #ff6600;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.25rem; /* 12px 20px */
+  border-radius: 0.5rem; /* 8px */
+  font-weight: 700;
+  cursor: pointer;
+  width: 100%;
+  font-size: 1rem; /* 16px */
+  transition: background-color 0.3s ease;
+}
+
+#checkout-button:hover {
+  background-color: #e65c00;
+}
+
+/* Container pilihan nomor meja */
+#table-selection {
+  margin-top: 1.5rem;
+  max-width: 200px; /* Lebar container kecil dan proporsional */
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #fafafa;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+/* Judul bagian nomor meja */
+#table-selection h3 {
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-weight: 700;
+  color: #ff6600;
+  font-size: 1rem;
+}
+
+/* Styling select nomor meja agar kecil dan compact */
+#table-number {
+  max-width: 180px;       /* Lebar dropdown kecil */
+  font-size: 0.85rem;     /* Font lebih kecil */
+  padding: 6px 30px 6px 8px; /* Padding compact */
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: white;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3csvg width='10' height='7' viewBox='0 0 10 7' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M1 1L5 5L9 1' stroke='%23666' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 10px 7px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#table-number:focus {
+  border-color: #ff6600;
+  outline: none;
+  box-shadow: 0 0 4px rgba(255, 102, 0, 0.5);
+}
+
+/* Responsive design with media queries */
+
+/* For small devices (phones, 320px and up) */
+@media (max-width: 479px) {
+  body {
+    margin: 1rem; /* 16px */
+  }
+  main {
+    padding: 1rem;
+    max-width: 100%;
+    box-shadow: none;
+  }
+  #cart-items li {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0.5rem 0;
+  }
+  #cart-items button {
+    align-self: flex-end;
+    margin-top: 0.5rem;
+  }
+  #checkout-button {
+    font-size: 1.125rem;
+    padding: 1rem;
+  }
+  #table-selection {
+    padding: 10px 12px;
+    max-width: 100%;
+    margin-top: 1.5rem;
+  }
+  #table-selection h3 {
+    font-size: 1rem;
+    margin-bottom: 8px;
+  }
+  #table-number {
+    font-size: 0.9rem;
+    padding: 7px 30px 7px 8px;
+    max-width: 100%;
+  }
+}
+
+/* For medium devices (tablets, 768px and up) */
+@media (min-width: 480px) and (max-width: 991px) {
+  body {
+    margin: 1.5rem;
+  }
+  main {
+    max-width: 90%;
+    padding: 1.25rem;
+  }
+  #cart-items li {
+    flex-direction: row;
+    padding: 0.625rem 0;
+  }
+}
+
+/* For large devices (desktops, 1200px and up) */
+@media (min-width: 992px) {
+  body {
+    margin: 2rem 5vw;
+  }
+  main {
+    max-width: 600px;
+    padding: 1.25rem;
+  }
+}

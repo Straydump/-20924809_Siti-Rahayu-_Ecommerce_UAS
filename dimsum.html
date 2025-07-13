@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DIMSUM | Dapur Salti</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+    <style>
+        /* Reset dan dasar */
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            margin: 0;
+            background: #fafafa;
+            color: #222;
+            line-height: 1.5;
+        }
+        header, footer {
+            background: #ffb703;
+            color: #fff;
+            padding: 16px 0;
+            text-align: center;
+            letter-spacing: 2px;
+        }
+        .navbar {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .logo {
+            font-weight: 600;
+            font-size: 1.6em;
+            letter-spacing: 2px;
+        }
+
+        .btn-back {
+           position: fixed;
+           top: 20px;
+           left: 20px;
+           background-color: transparent;
+           border: none;
+           color: #fcfaf7;
+           font-size: 1.1rem;
+           font-weight: 600;
+           cursor: pointer;
+           padding: 8px 12px;
+           display: inline-flex;
+           align-items: center;
+           gap: 6px;
+            transition: color 0.3s ease;
+        }
+
+        .btn-back:hover {
+           color: #fb8500;
+        }
+        main {
+            max-width: 900px;
+            margin: 32px auto;
+            padding: 16px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }
+        .product-detail {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 32px;
+            align-items: flex-start;
+        }
+        .product-detail img {
+            width: 320px;
+            max-width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .detail-info {
+            flex: 1;
+            min-width: 250px;
+        }
+        .detail-info h1 {
+            margin-top: 0;
+            font-size: 2em;
+            color: #fb8500;
+        }
+        .price {
+            color: #219ebc;
+            font-weight: 600;
+            font-size: 1.2em;
+            margin-bottom: 16px;
+        }
+        form label {
+            font-weight: 500;
+            display: block;
+            margin-top: 12px;
+        }
+        form select {
+            margin-top: 6px;
+            width: 100%;
+            padding: 8px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 1em;
+        }
+        /* Container metode konsumsi sejajar horizontal */
+        .metode-konsumsi {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+            margin-top: 8px;
+        }
+        .metode-konsumsi input[type="radio"] {
+            cursor: pointer;
+            margin: 0;
+        }
+        .metode-konsumsi label {
+            margin-left: 6px;
+            margin-right: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        /* Tombol */
+        form button, .btn-beli {
+            margin-top: 20px;
+            padding: 12px 32px;
+            background: #fb8500;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        form button:hover, .btn-beli:hover {
+            background: #ffb703;
+            color: #222;
+        }
+        .btn-beli {
+            margin-left: 12px;
+        }
+        .success-message {
+            background: #d9f99d;
+            color: #3a5a40;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 16px;
+            font-weight: 600;
+            display: none;
+            white-space: pre-line;
+        }
+        /* Responsif */
+        @media (max-width: 700px) {
+            .product-detail {
+                flex-direction: column;
+                align-items: center;
+            }
+            main {
+                padding: 8px;
+            }
+            .metode-konsumsi {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <span class="logo">DAPUR SALTI</span>
+            <button id="back-button" class="btn-back" aria-label="Kembali ke halaman sebelumnya">
+                ← Kembali
+              </button>
+        </nav>
+    </header>
+    <main>
+        <section class="product-detail">
+            <img src="dimsum.jpeg" alt="DIMSUM" />
+            <div class="detail-info">
+                <h1>DIMSUM</h1>
+                <p class="description">Kudapan kecil yang dikukus seperti siomay. Dimsum disajikan dalam porsi yang pas, cocok dinikmati selagi hangat.</p>
+                <p class="price">Harga: Rp15.000</p>
+                <form id="orderForm">
+                    <label for="chili oil">Pake Chili Oil:</label>
+                    <select id="chili oil" name="chili oil" required>
+                        <option value="YA">YA</option>
+                        <option value="TIDAK">TIDAK</option>
+                    </select>
+
+                    <label for="jenis">Jenis:</label>
+                    <select id="jenis" name="jenis" required>
+                        <option value="Original">Original</option>
+                        <option value="Mentai">Mentai</option>
+                    </select>
+
+                    <label>Metode Konsumsi:</label>
+                    <div class="metode-konsumsi">
+                        <input type="radio" id="dinein" name="consumption" value="Makan di Tempat" required>
+                        <label for="dinein">Makan di Tempat</label>
+
+                        <input type="radio" id="takeaway" name="consumption" value="Take Away" required>
+                        <label for="takeaway">Take Away</label>
+                    </div>
+
+                    <div>
+                        <button type="submit">Tambah ke Keranjang</button>
+                        <button type="button" class="btn-beli" id="beliBtn">Beli</button>
+                    </div>
+                </form>
+                <div class="success-message" id="successMsg"></div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div>© 2025 Dapur Salti. Semua hak cipta dilindungi.</div>
+    </footer>
+    <script>
+        
+        document.addEventListener('DOMContentLoaded', () => {
+         const backButton = document.getElementById('back-button');
+         if (backButton) {
+    backButton.addEventListener('click', () => {
+      // Kembali ke halaman sebelumnya di history browser
+      if (window.history.length > 1) {
+        window.history.back();
+      } else {
+        // Jika tidak ada history, arahkan ke halaman utama (ganti sesuai kebutuhan)
+        window.location.href = 'index.html';
+      }
+    });
+  }
+});
+        
+        // Fungsi untuk menambahkan produk ke keranjang di localStorage
+        function addToCart(newItem) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            // Cek apakah produk dengan opsi sama sudah ada di keranjang
+            const existingIndex = cart.findIndex(item => {
+                if (item.name !== newItem.name) return false;
+                const keys1 = Object.keys(item.options || {});
+                const keys2 = Object.keys(newItem.options || {});
+                if (keys1.length !== keys2.length) return false;
+                return keys1.every(key => item.options[key] === newItem.options[key]);
+            });
+
+            if (existingIndex > -1) {
+                cart[existingIndex].quantity = (cart[existingIndex].quantity || 1) + (newItem.quantity || 1);
+            } else {
+                cart.push({
+                    ...newItem,
+                    quantity: newItem.quantity || 1
+                });
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+        // Event listener form submit untuk tambah ke keranjang
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const chili = document.getElementById('chili').value;
+            const jenis  = document.getElementById('jenis').value;
+            const consumptionInput = document.querySelector('input[name="consumption"]:checked');
+            if (!consumptionInput) {
+                alert('Pilih metode konsumsi terlebih dahulu!');
+                return;
+            }
+            const consumption = consumptionInput.value;
+
+            const newItem = {
+                name: 'DIMSUM',
+                options: {
+                    chili : chili,
+                    jenis: jenis,
+                    consumption: consumption
+                },
+                price: 15000,
+                quantity: 1
+            };
+
+            addToCart(newItem);
+
+            // Tampilkan pesan sukses sementara
+            const successMsg = document.getElementById('successMsg');
+            successMsg.style.display = 'block';
+            successMsg.innerText = 'Produk berhasil ditambahkan ke keranjang!';
+
+            // Sembunyikan pesan setelah 2 detik
+            setTimeout(() => {
+                successMsg.style.display = 'none';
+            }, 2000);
+        });
+
+        // Fitur Beli: Kirim pesanan lewat WhatsApp
+        document.getElementById('beliBtn').addEventListener('click', function() {
+            const chili = document.getElementById('chili').value;
+            const jenis = document.getElementById('jenis').value;
+            const consumptionInput = document.querySelector('input[name="consumption"]:checked');
+            if (!consumptionInput) {
+                alert('Pilih metode konsumsi terlebih dahulu!');
+                return;
+            }
+            const consumptionVal = consumptionInput.value;
+            const pesan = encodeURIComponent(
+                `Halo, saya ingin pesan DIMSUM\nPake Chili Oil?: ${chili}\nJenis: ${jenis}\nMetode: ${consumptionVal}\nHarga: Rp10.000`
+            );
+            // Ganti nomor WhatsApp sesuai nomor toko Anda
+            window.open(`https://wa.me/6287815364639?text=${pesan}`, '_blank');
+        });
+    </script>
+</body>
+</html>
