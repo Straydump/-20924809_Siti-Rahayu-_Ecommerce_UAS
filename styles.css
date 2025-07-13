@@ -97,7 +97,7 @@ body {
 }
 
 /* Desktop nav links - horizontal */
-@media (min-width: 768px) {
+@media (min-width: 769px) {
   #burger-menu {
     display: none;
   }
@@ -487,11 +487,8 @@ footer {
   }
   .navbar {
     flex-direction: column;
-    padding: 0.5rem 1rem;
+    padding: 0.8rem 2vw;
     gap: 0.5rem;
-  }
-  .logo-text {
-    font-size: 1.25rem
   }
   .nav-links {
     flex-direction: column;
